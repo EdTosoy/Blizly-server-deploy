@@ -26,9 +26,6 @@ const getOptions = async () => {
     console.log("data base url exist");
     Object.assign(connectionOptions, { url: process.env.DATABASE_URL });
   } else {
-    // gets your default configuration
-    // you could get a specific config by name getConnectionOptions('production')
-    // or getConnectionOptions(process.env.NODE_ENV)
     connectionOptions = await getConnectionOptions();
   }
 
