@@ -20,9 +20,6 @@ const getOptions = async () => {
     type: "postgres",
     synchronize: true,
     logging: true,
-    extra: {
-      sll: true,
-    },
     entities: ["src/entity/**/*.ts"],
   };
   if (process.env.DATABASE_URL) {
@@ -86,8 +83,8 @@ const getOptions = async () => {
       resolvers: [__dirname + "/resolvers/*.ts"],
     }),
     context: ({ req, res }) => ({ req, res }),
-    introspection: true,
     playground: true,
+    introspection: true,
   });
 
   apolloServer.applyMiddleware({ app, cors: false });
