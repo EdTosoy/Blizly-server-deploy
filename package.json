@@ -2,7 +2,7 @@
   "name": "Blizly-TS-Backend",
   "version": "1.0.0",
   "main": "index.js",
-  "repository": "https://github.com/EdTosoy/Blizly-TS-Project.git",
+  "repository": "https://github.com/EdTosoy/Blizly-heroku-server.git",
   "author": "Ed Tosoy <edberto.tosoy@gmail.com>",
   "license": "MIT",
   "type": "commonjs",
@@ -21,9 +21,7 @@
     "reflect-metadata": "^0.1.10",
     "ts-node": "9.0.0",
     "type-graphql": "^1.1.1",
-    "typeorm": "0.2.29"
-  },
-  "devDependencies": {
+    "typeorm": "0.2.29",
     "@types/bcryptjs": "^2.4.2",
     "@types/cookie-parser": "^1.4.2",
     "@types/cors": "^2.8.8",
@@ -33,6 +31,7 @@
     "@types/node": "^14.14.11",
     "typescript": "4.0.5"
   },
+  "devDependencies": {},
   "scripts": {
     "start": "nodemon --exec ts-node src/index.ts "
   }
