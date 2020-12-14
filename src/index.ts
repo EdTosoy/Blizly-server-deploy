@@ -2,7 +2,11 @@ import "reflect-metadata";
 import express from "express";
 import { ApolloServer } from "apollo-server-express";
 import { buildSchema } from "type-graphql";
-import { ConnectionOptions, createConnection, getConnectionOptions } from "typeorm";
+import {
+  ConnectionOptions,
+  createConnection,
+  getConnectionOptions,
+} from "typeorm";
 import cookieParser from "cookie-parser";
 import { verify } from "jsonwebtoken";
 import { User } from "./entity/User";
@@ -16,6 +20,9 @@ const getOptions = async () => {
     type: "postgres",
     synchronize: true,
     logging: true,
+    extra: {
+      sll: true,
+    },
     entities: ["src/entity/**/*.ts"],
   };
   if (process.env.DATABASE_URL) {
@@ -74,12 +81,13 @@ const getOptions = async () => {
   const typeormconfig = await getOptions();
   await createConnection(typeormconfig);
 
-
   const apolloServer = new ApolloServer({
     schema: await buildSchema({
       resolvers: [__dirname + "/resolvers/*.ts"],
     }),
     context: ({ req, res }) => ({ req, res }),
+    introspection: true,
+    playground: true,
   });
 
   apolloServer.applyMiddleware({ app, cors: false });
@@ -90,4 +98,3 @@ const getOptions = async () => {
 })().catch((err) => {
   console.log(err);
 });
-;
